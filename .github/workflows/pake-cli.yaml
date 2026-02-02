@@ -38,6 +38,9 @@ on:
         required: false
         type: boolean
         default: false
+      zoom:
+        description: "zoom"
+        required: false
       hide_title_bar:
         description: "Hide title bar (macOS only)"
         required: false
@@ -114,6 +117,10 @@ jobs:
 
           if [ "${{ inputs.fullscreen }}" == "true" ]; then
             ARGS="$ARGS --fullscreen"
+          fi
+          
+          if [ -n "${{ inputs.zoom }}" ]; then
+            ARGS="$ARGS --zoom ${{ inputs.zoom }}"
           fi
 
           if [ "${{ inputs.hide_title_bar }}" == "true" ]; then
