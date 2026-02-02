@@ -170,6 +170,14 @@ jobs:
             $args += "--fullscreen"
           }
 
+          if ("${{ inputs.zoom }}" -ne "") {
+            $args += "--zoom", "${{ inputs.zoom }}"
+          }
+
+          if ("${{ inputs.new_window }}" -eq "true") {
+            $args += "--new-window"
+          }
+
           if ("${{ inputs.hide_title_bar }}" -eq "true") {
             $args += "--hide-title-bar"
           }
