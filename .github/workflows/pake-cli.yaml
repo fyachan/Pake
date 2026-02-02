@@ -10,7 +10,7 @@ on:
       platform:
         description: "Platform"
         required: true
-        default: "macos-latest"
+        default: "windows-latest"
         type: choice
         options:
           - "windows-latest"
@@ -41,6 +41,11 @@ on:
       zoom:
         description: "zoom"
         required: false
+      new_window:
+        description: "new_window"
+        required: false
+        type: boolean
+        default: true
       hide_title_bar:
         description: "Hide title bar (macOS only)"
         required: false
@@ -121,6 +126,10 @@ jobs:
           
           if [ -n "${{ inputs.zoom }}" ]; then
             ARGS="$ARGS --zoom ${{ inputs.zoom }}"
+          fi
+
+          if [ "${{ inputs.new_window }}" == "true" ]; then
+            ARGS="$ARGS --new-window"
           fi
 
           if [ "${{ inputs.hide_title_bar }}" == "true" ]; then
